@@ -6,7 +6,7 @@
 /*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 22:01:21 by jabae             #+#    #+#             */
-/*   Updated: 2022/07/20 22:52:26 by jabae            ###   ########.fr       */
+/*   Updated: 2022/07/21 16:49:09 by jabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,42 @@ int	ft_error(void)
 	exit(EXIT_FAILURE);
 }
 
-void	init_deque(t_deque *deque)
+void	init_deque(t_deque *dq)
 {
-	deque->top = NULL;
-	deque->bottom = NULL;
-	deque->total = 0;
+	dq->top = NULL;
+	dq->bottom = NULL;
+	dq->total = 0;
+}
+
+void free_deque(t_deque *dq)
+{
+	t_node *tmp;
+
+	tmp = dq->top;
+	while (dq->top)
+	{
+		dq->top = dq->top->next;
+		free(tmp);
+		tmp = dq->top;
+	}
+}
+
+int ft_isnum(const char *s)
+{
+	int	i;
+
+	i = 0;
+	if (s[i] == '+' || s[i] == '-')
+		i++;
+	if (s[i] == '\0')
+		return (0);
+	while (s[i])
+	{
+		if (!ft_isdigit(s[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
 long long ft_atoll(const char *s)
@@ -52,20 +83,3 @@ long long ft_atoll(const char *s)
 	return (sign * result);
 }
 
-int ft_isnum(const char *s)
-{
-	int	i;
-
-	i = 0;
-	if (s[i] == '+' || s[i] == '-')
-		i++;
-	if (s[i] == '\0')
-		return (0);
-	while (s[i])
-	{
-		if (!ft_isdigit(s[i]))
-			return (0);
-		i++;
-	}
-	return (1);
-}

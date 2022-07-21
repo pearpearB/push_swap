@@ -6,17 +6,42 @@
 /*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:05:24 by jabae             #+#    #+#             */
-/*   Updated: 2022/07/20 23:03:07 by jabae            ###   ########.fr       */
+/*   Updated: 2022/07/21 13:31:53 by jabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void check_dup_and_indexing(t_deque *a)
+{
+	t_node *cur;
+	t_node *cur_next;
+
+	cur = a->top;
+	while (cur)
+	{
+		cur_next = cur->next;
+		while (cur_next)
+		{
+			if (cur->num > cur_next->num)
+				cur->idx++;
+			else if (cur->num < cur_next->num)
+				cur_next->idx++;
+			else
+				ft_error();
+			cur_next = cur_next->next;
+		}
+		cur = cur->next;
+	}
+}
 
 static void add_new_node(int num, t_deque *a)
 {
 	t_node *new;
 
 	new = malloc(sizeof(t_node));
+	if (!new)
+		exit(EXIT_FAILURE);
 	new->num = num;
 	new->idx = 0;
 	if (a->total == 0)
@@ -34,7 +59,7 @@ static void add_new_node(int num, t_deque *a)
 	a->total++;
 }
 
-static void check_and_add_input(const char *s, t_deque *a)
+static void add_valid_input(const char *s, t_deque *a)
 {
 	long long num;
 
@@ -42,9 +67,10 @@ static void check_and_add_input(const char *s, t_deque *a)
 	if (!(ft_isnum(s)) || num > 2147483647 || num < -2147483648)
 		ft_error();
 	add_new_node(num, a);
+	check_dup_and_indexing(a);
 }
 
-static void	split_input_str(const char *s, t_deque *a)
+static void	split_input(const char *s, t_deque *a)
 {
 	char **sp_str;
 	int i;
@@ -57,7 +83,7 @@ static void	split_input_str(const char *s, t_deque *a)
 	i = -1;
 	while (sp_str[++i] != NULL)
 	{
-		check_and_add_input(sp_str[i], a);
+		add_valid_input(sp_str[i], a);
 		free(sp_str[i]);
 	}
 	free(sp_str);
@@ -71,8 +97,8 @@ void	parsing(char **argv, t_deque *a)
 	while (argv[++i])
 	{
 		if (ft_strchr(argv[i], ' '))
-			split_input_str(argv[i], a);
+			split_input(argv[i], a);
 		else
-			check_and_add_input(argv[i], a);
+			add_valid_input(argv[i], a);
 	}
 }
