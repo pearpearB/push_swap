@@ -6,7 +6,7 @@
 /*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 22:01:21 by jabae             #+#    #+#             */
-/*   Updated: 2022/07/21 16:49:09 by jabae            ###   ########.fr       */
+/*   Updated: 2022/07/22 16:57:47 by jabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,44 +40,40 @@ void free_deque(t_deque *dq)
 
 int ft_isnum(const char *s)
 {
-	int	i;
-
-	i = 0;
-	if (s[i] == '+' || s[i] == '-')
-		i++;
-	if (s[i] == '\0')
+	if (*s == '+' || *s == '-')
+		s++;
+	if (*s == '\0')
 		return (0);
-	while (s[i])
+	while (*s)
 	{
-		if (!ft_isdigit(s[i]))
+		if (!ft_isdigit(*s))
 			return (0);
-		i++;
+		s++;
 	}
 	return (1);
 }
 
 long long ft_atoll(const char *s)
 {
-	int i;
 	int sign;
 	long long result;
 
-	i = 0;
 	sign = 1;
 	result = 0;
-	while (((s[i] >= 9 && s[i] <= 13) || s[i] == ' ') && s[i])
-		i++;
-	if (s[i] == '+' || s[i] == '-')
+	while (((*s >= 9 && *s <= 13) || *s == ' ') && *s)
+		s++;
+	if (*s == '+' || *s == '-')
 	{
-		if (s[i] == '-')
+		if (*s == '-')
 			sign *= -1;
-		i++;
+		s++;
 	}
-	while (ft_isdigit(s[i]) && s[i])
+	while (ft_isdigit(*s) && *s)
 	{
-		result = result * 10 + (s[i] - '0');
-		if (sign * result > 2147483647 || sign * result < -2147483648)
+		if ((sign > 0 && result > LONG_MAX / 10) || \
+			(sign < 0 && result > LONG_MAX + 1 / 10))
 			break ;
+		result = result * 10 + (*s - '0');
 		s++;
 	}
 	return (sign * result);
