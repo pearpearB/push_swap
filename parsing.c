@@ -6,7 +6,7 @@
 /*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:05:24 by jabae             #+#    #+#             */
-/*   Updated: 2022/07/21 13:31:53 by jabae            ###   ########.fr       */
+/*   Updated: 2022/07/22 17:39:55 by jabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ static void add_valid_input(const char *s, t_deque *a)
 	if (!(ft_isnum(s)) || num > 2147483647 || num < -2147483648)
 		ft_error();
 	add_new_node(num, a);
-	check_dup_and_indexing(a);
 }
 
 static void	split_input(const char *s, t_deque *a)
@@ -101,4 +100,5 @@ void	parsing(char **argv, t_deque *a)
 		else
 			add_valid_input(argv[i], a);
 	}
+	check_dup_and_indexing(a);
 }
