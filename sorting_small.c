@@ -6,7 +6,7 @@
 /*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 15:05:57 by jabae             #+#    #+#             */
-/*   Updated: 2022/07/23 16:41:03 by jabae            ###   ########.fr       */
+/*   Updated: 2022/07/23 17:25:36 by jabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,9 @@ int is_sorted(t_deque *a)
 	return (1);
 }
 
-void sort_three(t_deque *a)
+static void sort_three_util(int first, int second, int third)
 {
-	int first;
-	int second;
-	int third;
-
-	if (is_sorted(a))
-		return ;
-	first = a->top->idx;
-	second = a->top->next->idx;
-	third = a->bottom->idx;
-	if (first < second)
+		if (first < second)
 	{
 		if (first < third)
 		{
@@ -61,6 +52,20 @@ void sort_three(t_deque *a)
 		else
 			operation(SA, a, NULL);
 	}
+}
+
+void sort_three(t_deque *a)
+{
+	int first;
+	int second;
+	int third;
+
+	if (is_sorted(a))
+		return ;
+	first = a->top->idx;
+	second = a->top->next->idx;
+	third = a->bottom->idx;
+	sort_three_util(first, second, third);
 }
 
 void sort_four(t_deque *a, t_deque *b)
