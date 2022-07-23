@@ -6,11 +6,27 @@
 /*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 15:05:57 by jabae             #+#    #+#             */
-/*   Updated: 2022/07/21 22:01:40 by jabae            ###   ########.fr       */
+/*   Updated: 2022/07/23 16:41:03 by jabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int is_sorted(t_deque *a)
+{
+	t_node *cur;
+	t_node *cur_next;
+
+	cur = a->top;
+	while(cur->next)
+	{
+		cur_next = cur->next;
+		if (cur->idx > cur_next->idx)
+			return (0);
+		cur = cur->next;
+	}
+	return (1);
+}
 
 void sort_three(t_deque *a)
 {
@@ -18,9 +34,11 @@ void sort_three(t_deque *a)
 	int second;
 	int third;
 
+	if (is_sorted(a))
+		return ;
 	first = a->top->idx;
 	second = a->top->next->idx;
-	third = a->top->next->next->idx;
+	third = a->bottom->idx;
 	if (first < second)
 	{
 		if (first < third)
@@ -68,7 +86,7 @@ void sort_four(t_deque *a, t_deque *b)
 	operation(PA, a, b);
 }
 
-void sort_five(t_deque *a, t_deque *b) // * 더 생각해보기
+void sort_five(t_deque *a, t_deque *b)
 {
 	while (a->total > 3)
 	{

@@ -6,7 +6,7 @@
 /*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 22:01:21 by jabae             #+#    #+#             */
-/*   Updated: 2022/07/22 16:57:47 by jabae            ###   ########.fr       */
+/*   Updated: 2022/07/23 16:23:47 by jabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_error(void)
 {
-	ft_putendl_fd("Error\n", 2);
+	ft_putendl_fd("Error", 2);
 	exit(EXIT_FAILURE);
 }
 

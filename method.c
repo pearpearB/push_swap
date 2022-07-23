@@ -6,7 +6,7 @@
 /*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:44:49 by jabae             #+#    #+#             */
-/*   Updated: 2022/07/21 20:43:23 by jabae            ###   ########.fr       */
+/*   Updated: 2022/07/23 16:07:25 by jabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void rotate(t_deque *dq) // bottom에 연결
 	node = dq->top;
 	dq->top = node->next;
 	dq->top->prev = NULL;
+	node->next = NULL;
 	node->prev = dq->bottom;
 	dq->bottom->next = node;
-	node->next = NULL;
 	dq->bottom = node;
 }
 
@@ -36,9 +36,9 @@ void reverse_rotate(t_deque *dq) // top에 연결
 	node = dq->bottom;
 	dq->bottom = node->prev;
 	dq->bottom->next = NULL;
+	node->prev = NULL;
 	node->next = dq->top;
 	dq->top->prev = node;
-	node->prev = NULL;
 	dq->top = node;
 }
 
@@ -77,7 +77,7 @@ void push(t_deque *dst, t_deque *src) // a, b면 pa // b, a면 pb
 	node->next = dst->top;
 	node->prev = NULL;
 	if (dst->top)
-		dst->top->prev = NULL;
+		dst->top->prev = node;
 	else // 아무것도 없을 때
 		dst->bottom = node;
 	dst->top = node;

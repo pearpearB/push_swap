@@ -6,7 +6,7 @@
 /*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:05:24 by jabae             #+#    #+#             */
-/*   Updated: 2022/07/22 17:39:55 by jabae            ###   ########.fr       */
+/*   Updated: 2022/07/23 14:59:16 by jabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void add_new_node(int num, t_deque *a)
 	}
 	else
 	{
-		new->prev = a->bottom; // 한 번 더 보기
+		new->prev = a->bottom;
 		new->next = NULL;
 		a->bottom->next = new;
 		a->bottom = new;
@@ -64,7 +64,7 @@ static void add_valid_input(const char *s, t_deque *a)
 	long long num;
 
 	num = ft_atoll(s);
-	if (!(ft_isnum(s)) || num > 2147483647 || num < -2147483648)
+	if (!(ft_isnum(s)) || num > INT_MAX || num < INT_MIN)
 		ft_error();
 	add_new_node(num, a);
 }
