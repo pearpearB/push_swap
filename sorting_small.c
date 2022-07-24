@@ -6,19 +6,19 @@
 /*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 15:05:57 by jabae             #+#    #+#             */
-/*   Updated: 2022/07/23 17:25:36 by jabae            ###   ########.fr       */
+/*   Updated: 2022/07/24 23:32:51 by jabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int is_sorted(t_deque *a)
+int	is_sorted(t_deque *a)
 {
-	t_node *cur;
-	t_node *cur_next;
+	t_node	*cur;
+	t_node	*cur_next;
 
 	cur = a->top;
-	while(cur->next)
+	while (cur->next)
 	{
 		cur_next = cur->next;
 		if (cur->idx > cur_next->idx)
@@ -28,9 +28,9 @@ int is_sorted(t_deque *a)
 	return (1);
 }
 
-static void sort_three_util(int first, int second, int third)
+static void	sort_three_util(int first, int second, int third)
 {
-		if (first < second)
+	if (first < second)
 	{
 		if (first < third)
 		{
@@ -54,11 +54,11 @@ static void sort_three_util(int first, int second, int third)
 	}
 }
 
-void sort_three(t_deque *a)
+void	sort_three(t_deque *a)
 {
-	int first;
-	int second;
-	int third;
+	int	first;
+	int	second;
+	int	third;
 
 	if (is_sorted(a))
 		return ;
@@ -68,11 +68,11 @@ void sort_three(t_deque *a)
 	sort_three_util(first, second, third);
 }
 
-void sort_four(t_deque *a, t_deque *b)
+void	sort_four(t_deque *a, t_deque *b)
 {
-	int second;
-	int third;
-	int last;
+	int	second;
+	int	third;
+	int	last;
 
 	second = a->top->next->idx;
 	third = a->top->next->next->idx;
@@ -91,7 +91,7 @@ void sort_four(t_deque *a, t_deque *b)
 	operation(PA, a, b);
 }
 
-void sort_five(t_deque *a, t_deque *b)
+void	sort_five(t_deque *a, t_deque *b)
 {
 	while (a->total > 3)
 	{
@@ -101,7 +101,7 @@ void sort_five(t_deque *a, t_deque *b)
 			operation(RA, a, NULL);
 	}
 	sort_three(a);
-	while(b->total)
+	while (b->total)
 		operation(PA, a, b);
 	if (a->top->idx != 0)
 		operation(SA, a, b);

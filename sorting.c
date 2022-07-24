@@ -6,20 +6,20 @@
 /*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 15:05:54 by jabae             #+#    #+#             */
-/*   Updated: 2022/07/23 15:57:24 by jabae            ###   ########.fr       */
+/*   Updated: 2022/07/24 23:31:27 by jabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int route_rb_or_rrb(t_deque *deque, int max_idx)
+static int	route_rb_or_rrb(t_deque *deque, int max_idx)
 {
-	int loc;
-	t_node *cur;
+	t_node	*cur;
+	int		loc;
 
 	loc = 1;
 	cur = deque->top;
-	while(cur->idx != max_idx)
+	while (cur->idx != max_idx)
 	{
 		loc++;
 		cur = cur->next;
@@ -30,12 +30,12 @@ static int route_rb_or_rrb(t_deque *deque, int max_idx)
 		return (0);
 }
 
-void a_to_b(t_deque *a, t_deque *b, int chunk)
+void	a_to_b(t_deque *a, t_deque *b, int chunk)
 {
-	int criteria;
+	int	criteria;
 
 	criteria = 0;
-	while(a->total)
+	while (a->total)
 	{
 		if (a->top->idx <= criteria)
 		{
@@ -58,11 +58,11 @@ void a_to_b(t_deque *a, t_deque *b, int chunk)
 	}
 }
 
-void b_to_a(t_deque *a, t_deque *b)
+void	b_to_a(t_deque *a, t_deque *b)
 {
-	int max_idx;
+	int	max_idx;
 
-	while(b->total)
+	while (b->total)
 	{
 		max_idx = b->total - 1;
 		if (route_rb_or_rrb(b, max_idx))

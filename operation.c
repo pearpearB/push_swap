@@ -6,13 +6,13 @@
 /*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 14:46:18 by jabae             #+#    #+#             */
-/*   Updated: 2022/07/23 14:46:40 by jabae            ###   ########.fr       */
+/*   Updated: 2022/07/24 23:27:50 by jabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void operation2(int op, t_deque *a, t_deque *b)
+void	operation2(int op, t_deque *a, t_deque *b)
 {
 	if (op == RA)
 	{
@@ -36,7 +36,7 @@ void operation2(int op, t_deque *a, t_deque *b)
 	}
 }
 
-void operation(int op, t_deque *a, t_deque *b)
+void	operation(int op, t_deque *a, t_deque *b)
 {
 	if (op == PA)
 	{

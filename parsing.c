@@ -6,16 +6,16 @@
 /*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:05:24 by jabae             #+#    #+#             */
-/*   Updated: 2022/07/23 17:15:31 by jabae            ###   ########.fr       */
+/*   Updated: 2022/07/24 23:29:21 by jabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void check_dup_and_indexing(t_deque *a)
+static void	check_dup_and_indexing(t_deque *a)
 {
-	t_node *cur;
-	t_node *cur_next;
+	t_node	*cur;
+	t_node	*cur_next;
 
 	cur = a->top;
 	while (cur)
@@ -35,9 +35,9 @@ static void check_dup_and_indexing(t_deque *a)
 	}
 }
 
-static void add_new_node(int num, t_deque *a)
+static void	add_new_node(int num, t_deque *a)
 {
-	t_node *new;
+	t_node	*new;
 
 	new = malloc(sizeof(t_node));
 	if (!new)
@@ -59,9 +59,9 @@ static void add_new_node(int num, t_deque *a)
 	a->total++;
 }
 
-static void add_valid_input(const char *s, t_deque *a)
+static void	add_valid_input(const char *s, t_deque *a)
 {
-	long long num;
+	long long	num;
 
 	num = ft_atoll(s);
 	if (!(ft_isnum(s)) || num > INT_MAX || num < INT_MIN)
@@ -71,13 +71,13 @@ static void add_valid_input(const char *s, t_deque *a)
 
 static void	split_input(const char *s, t_deque *a)
 {
-	char **sp_str;
-	int i;
+	char	**sp_str;
+	int		i;
 
 	sp_str = ft_split(s, ' ');
-	if (sp_str == NULL) // 할당 못 받았을 때
+	if (sp_str == NULL)
 		exit(EXIT_FAILURE);
-	if (!sp_str[0]) // 공백만 있는 문자열일 때
+	if (!sp_str[0])
 		ft_error();
 	i = -1;
 	while (sp_str[++i] != NULL)

@@ -6,15 +6,15 @@
 /*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:44:49 by jabae             #+#    #+#             */
-/*   Updated: 2022/07/23 16:07:25 by jabae            ###   ########.fr       */
+/*   Updated: 2022/07/24 23:27:01 by jabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void rotate(t_deque *dq) // bottom에 연결
+void	rotate(t_deque *dq)
 {
-	t_node *node;
+	t_node	*node;
 
 	if (dq->total < 2)
 		return ;
@@ -27,9 +27,9 @@ void rotate(t_deque *dq) // bottom에 연결
 	dq->bottom = node;
 }
 
-void reverse_rotate(t_deque *dq) // top에 연결
+void	reverse_rotate(t_deque *dq)
 {
-	t_node *node;
+	t_node	*node;
 
 	if (dq->total < 2)
 		return ;
@@ -42,7 +42,7 @@ void reverse_rotate(t_deque *dq) // top에 연결
 	dq->top = node;
 }
 
-void swap(t_deque *dq)
+void	swap(t_deque *dq)
 {
 	t_node	*node1;
 	t_node	*node2;
@@ -62,9 +62,9 @@ void swap(t_deque *dq)
 	node1->next = node2;
 }
 
-void push(t_deque *dst, t_deque *src) // a, b면 pa // b, a면 pb
+void	push(t_deque *dst, t_deque *src)
 {
-	t_node *node;
+	t_node	*node;
 
 	if (src->total == 0)
 		return ;

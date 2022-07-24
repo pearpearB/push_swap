@@ -6,7 +6,7 @@
 /*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 22:01:21 by jabae             #+#    #+#             */
-/*   Updated: 2022/07/23 16:23:47 by jabae            ###   ########.fr       */
+/*   Updated: 2022/07/24 23:34:06 by jabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	init_deque(t_deque *dq)
 	dq->total = 0;
 }
 
-void free_deque(t_deque *dq)
+void	free_deque(t_deque *dq)
 {
-	t_node *tmp;
+	t_node	*tmp;
 
 	tmp = dq->top;
 	while (dq->top)
@@ -38,7 +38,7 @@ void free_deque(t_deque *dq)
 	}
 }
 
-int ft_isnum(const char *s)
+int	ft_isnum(const char *s)
 {
 	if (*s == '+' || *s == '-')
 		s++;
@@ -53,10 +53,10 @@ int ft_isnum(const char *s)
 	return (1);
 }
 
-long long ft_atoll(const char *s)
+long long	ft_atoll(const char *s)
 {
-	int sign;
-	long long result;
+	long long	result;
+	int			sign;
 
 	sign = 1;
 	result = 0;
@@ -78,4 +78,3 @@ long long ft_atoll(const char *s)
 	}
 	return (sign * result);
 }
-
