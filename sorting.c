@@ -6,7 +6,7 @@
 /*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 15:05:54 by jabae             #+#    #+#             */
-/*   Updated: 2022/07/24 23:31:27 by jabae            ###   ########.fr       */
+/*   Updated: 2022/07/25 15:39:19 by jabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	a_to_b(t_deque *a, t_deque *b, int chunk)
 		}
 		else
 		{
-			if (a->bottom->idx <= criteria + chunk)
+			if (a->bottom->idx <= criteria + chunk) // 최악의 경우 방지
 				operation(RRA, a, NULL);
 			else
 				operation(RA, a, NULL);
