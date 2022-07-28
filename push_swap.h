@@ -6,7 +6,7 @@
 /*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 13:43:39 by jabae             #+#    #+#             */
-/*   Updated: 2022/07/23 17:17:12 by jabae            ###   ########.fr       */
+/*   Updated: 2022/07/28 22:18:06 by jabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 # define SB 5
 # define RRA 6
 # define RRB 7
+
+# define CHECKER 1
+# define NOCHECKER 0
 
 # define LONG_MAX 9223372036854775807
 # define INT_MAX 2147483647
@@ -51,8 +54,8 @@ void	reverse_rotate(t_deque *dq);
 void	swap(t_deque *dq);
 void	push(t_deque *dst, t_deque *src);
 /* operation */
-void	operation2(int op, t_deque *a, t_deque *b);
-void	operation(int op, t_deque *a, t_deque *b);
+void	operation_R(int op, t_deque *a, t_deque *b, int isChecker);
+void	operation(int op, t_deque *a, t_deque *b, int isChecker);
 /* sorting */
 void	a_to_b(t_deque *a, t_deque *b, int chunk);
 void	b_to_a(t_deque *a, t_deque *b);

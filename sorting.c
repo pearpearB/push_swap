@@ -6,7 +6,7 @@
 /*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 15:05:54 by jabae             #+#    #+#             */
-/*   Updated: 2022/07/25 15:39:19 by jabae            ###   ########.fr       */
+/*   Updated: 2022/07/28 20:43:07 by jabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,21 @@ void	a_to_b(t_deque *a, t_deque *b, int chunk)
 	{
 		if (a->top->idx <= criteria)
 		{
-			operation(PB, a, b);
+			operation(PB, a, b, NOCHECKER);
 			criteria++;
 		}
 		else if (a->top->idx <= criteria + chunk)
 		{
-			operation(PB, a, b);
-			operation(RB, NULL, b);
+			operation(PB, a, b, NOCHECKER);
+			operation_R(RB, NULL, b, NOCHECKER);
 			criteria++;
 		}
 		else
 		{
 			if (a->bottom->idx <= criteria + chunk) // 최악의 경우 방지
-				operation(RRA, a, NULL);
+				operation_R(RRA, a, NULL, NOCHECKER);
 			else
-				operation(RA, a, NULL);
+				operation_R(RA, a, NULL, NOCHECKER);
 		}
 	}
 }
@@ -68,13 +68,13 @@ void	b_to_a(t_deque *a, t_deque *b)
 		if (route_rb_or_rrb(b, max_idx))
 		{
 			while (b->top->idx != max_idx)
-				operation(RB, NULL, b);
+				operation_R(RB, NULL, b, NOCHECKER);
 		}
 		else
 		{
 			while (b->top->idx != max_idx)
-				operation(RRB, NULL, b);
+				operation_R(RRB, NULL, b, NOCHECKER);
 		}
-		operation(PA, a, b);
+		operation(PA, a, b, NOCHECKER);
 	}
 }

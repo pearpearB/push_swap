@@ -6,7 +6,7 @@
 /*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 13:42:14 by jabae             #+#    #+#             */
-/*   Updated: 2022/07/24 23:30:00 by jabae            ###   ########.fr       */
+/*   Updated: 2022/07/28 20:42:02 by jabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	calc_chunk(int x)
 static void	push_swap(t_deque *a, t_deque *b)
 {
 	if (a->total == 2)
-		operation(SA, a, NULL);
+		operation(SA, a, NULL, NOCHECKER);
 	else if (a->total == 3)
 		sort_three(a);
 	else if (a->total == 4)

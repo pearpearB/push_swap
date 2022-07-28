@@ -6,7 +6,7 @@
 /*   By: jabae <jabae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 15:05:57 by jabae             #+#    #+#             */
-/*   Updated: 2022/07/25 15:29:59 by jabae            ###   ########.fr       */
+/*   Updated: 2022/07/28 20:48:24 by jabae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,23 @@ static void	sort_three_util(int first, int second, int third, t_deque *a)
 	{
 		if (first < third)
 		{
-			operation(RRA, a, NULL);
-			operation(SA, a, NULL);
+			operation_R(RRA, a, NULL, NOCHECKER);
+			operation(SA, a, NULL, NOCHECKER);
 		}
 		else
-			operation(RRA, a, NULL);
+			operation_R(RRA, a, NULL, NOCHECKER);
 	}
 	else
 	{
 		if (first > third && second > third)
 		{
-			operation(RA, a, NULL);
-			operation(SA, a, NULL);
+			operation_R(RA, a, NULL, NOCHECKER);
+			operation(SA, a, NULL, NOCHECKER);
 		}
 		else if (first > third && second < third)
-			operation(RA, a, NULL);
+			operation_R(RA, a, NULL, NOCHECKER);
 		else
-			operation(SA, a, NULL);
+			operation(SA, a, NULL, NOCHECKER);
 	}
 }
 
@@ -78,17 +78,17 @@ void	sort_four(t_deque *a, t_deque *b)
 	third = a->top->next->next->idx;
 	last = a->bottom->idx;
 	if (second == 0)
-		operation(SA, a, NULL);
+		operation(SA, a, NULL, NOCHECKER);
 	else if (third == 0)
 	{
-		operation(RA, a, NULL);
-		operation(RA, a, NULL);
+		operation_R(RA, a, NULL, NOCHECKER);
+		operation_R(RA, a, NULL, NOCHECKER);
 	}
 	else if (last == 0)
-		operation(RRA, a, NULL);
-	operation(PB, a, b);
+		operation_R(RRA, a, NULL, NOCHECKER);
+	operation(PB, a, b, NOCHECKER);
 	sort_three(a);
-	operation(PA, a, b);
+	operation(PA, a, b, NOCHECKER);
 }
 
 void	sort_five(t_deque *a, t_deque *b)
@@ -96,13 +96,13 @@ void	sort_five(t_deque *a, t_deque *b)
 	while (a->total > 3)
 	{
 		if (a->top->idx < 2)
-			operation(PB, a, b);
+			operation(PB, a, b, NOCHECKER);
 		else
-			operation(RA, a, NULL);
+			operation_R(RA, a, NULL, NOCHECKER);
 	}
 	sort_three(a);
 	while (b->total)
-		operation(PA, a, b);
+		operation(PA, a, b, NOCHECKER);
 	if (a->top->idx != 0)
-		operation(SA, a, b);
+		operation(SA, a, b, NOCHECKER);
 }
